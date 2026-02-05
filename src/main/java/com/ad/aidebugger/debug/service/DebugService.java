@@ -23,27 +23,27 @@ public class DebugService {
     }
 
     public DebugResponseDto analyze(DebugRequestDto dto, String username) {
-        
-        String combinedInput =
-                "Language: " + dto.getLanguage() + "\n" + "Error: " + dto.getErrorMessage() + "\n" + "Code:\n" + dto.getCodeSnippet();
 
-        Map<String, String> aiResult = debugAnalyzer.analyze(combinedInput);
+        Map<String, String> aiResult = debugAnalyzer.analyze(
+                dto.getLanguage(),
+                dto.getErrorMessage(),
+                dto.getCodeSnippet()
+        );
 
         DebugRequest request = new DebugRequest();
         request.setUsername(username);
         request.setLanguage(dto.getLanguage());
         request.setErrorMessage(dto.getErrorMessage());
         request.setCodeSnippet(dto.getCodeSnippet());
-        request.setAiIssue(aiResult.get("issue"));
-        request.setAiCause(aiResult.get("cause"));
-        request.setAiFix(aiResult.get("fix"));
-
+        request.setAiIssue(aiResult.getOrDefault("issue", ""));
+        request.setAiCause(aiResult.getOrDefault("rootCause", ""));
+        request.setAiFix(aiResult.getOrDefault("fixSteps", ""));
         repository.save(request);
 
         return new DebugResponseDto(
-                aiResult.get("issue"),
-                aiResult.get("cause"),
-                aiResult.get("fix")
+                aiResult.getOrDefault("issue", ""),
+                aiResult.getOrDefault("rootCause", ""),
+                aiResult.getOrDefault("fixSteps", "")
         );
     }
 }

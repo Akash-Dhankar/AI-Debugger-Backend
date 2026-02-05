@@ -8,5 +8,5 @@ import lombok.Data;
 public class DebugResponseDto {
     private String rootCause;
     private String fixSteps;
-    private String whatNotToDo;
+    private String whatToDo;
 }
