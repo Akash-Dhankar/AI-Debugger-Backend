@@ -102,6 +102,7 @@
 			<version>0.11.5</version>
 			<scope>runtime</scope>
 		</dependency>
+<<<<<<< HEAD
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -113,6 +114,8 @@
 			<artifactId>jackson-databind</artifactId>
 		</dependency>
 
+=======
+>>>>>>> 35a7cef426ee588e1a13e496cb059a4ca4f6d72b
 	</dependencies>
 
 	<build>

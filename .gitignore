@@ -31,7 +31,10 @@ build/
 
 ### VS Code ###
 .vscode/
+<<<<<<< HEAD
 
 #Secrets
 .env
 *.env
+=======
+>>>>>>> 35a7cef426ee588e1a13e496cb059a4ca4f6d72b
