@@ -35,15 +35,16 @@ public class DebugService {
         request.setLanguage(dto.getLanguage());
         request.setErrorMessage(dto.getErrorMessage());
         request.setCodeSnippet(dto.getCodeSnippet());
-        request.setAiIssue(aiResult.getOrDefault("issue", ""));
+//        request.setAiIssue(aiResult.getOrDefault("issue", ""));
         request.setAiCause(aiResult.getOrDefault("rootCause", ""));
         request.setAiFix(aiResult.getOrDefault("fixSteps", ""));
+        request.setAiIssue(aiResult.getOrDefault("whatNotToDo", ""));
         repository.save(request);
 
         return new DebugResponseDto(
-                aiResult.getOrDefault("issue", ""),
                 aiResult.getOrDefault("rootCause", ""),
-                aiResult.getOrDefault("fixSteps", "")
+                aiResult.getOrDefault("fixSteps", ""),
+                aiResult.getOrDefault("whatNotToDo", "")
         );
     }
 }

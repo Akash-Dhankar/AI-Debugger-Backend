@@ -27,6 +27,7 @@
 		<url/>
 	</scm>
 	<properties>
+		<spring-boot.version>4.0.1</spring-boot.version>
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
@@ -102,21 +103,28 @@
 			<version>0.11.5</version>
 			<scope>runtime</scope>
 		</dependency>
-<<<<<<< HEAD
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webflux</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 		</dependency>
-
-=======
->>>>>>> 35a7cef426ee588e1a13e496cb059a4ca4f6d72b
 	</dependencies>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>${spring-boot.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
 
 	<build>
 		<plugins>

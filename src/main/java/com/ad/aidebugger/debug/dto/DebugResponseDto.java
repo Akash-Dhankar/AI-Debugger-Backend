@@ -10,3 +10,5 @@ public class DebugResponseDto {
     private String fixSteps;
     private String whatNotToDo;
 }
+
+

@@ -28,8 +28,6 @@ public class DebugAnalyzer {
             requestBody.put("language", language);
             requestBody.put("errorMessage", errorMessage);
             requestBody.put("codeSnippet", codeSnippet);
-            requestBody.put("max_tokens", 200);
-            requestBody.put("temperature", 0.2);
 
             String responseJson = webClient.post()
                     .uri(aiServiceUrl)
@@ -39,21 +37,25 @@ public class DebugAnalyzer {
                     .bodyToMono(String.class)
                     .block();
 
-            return objectMapper.readValue(responseJson, Map.class);
+            Map<String, String> ai = objectMapper.readValue(responseJson, Map.class);
+
+            Map<String, String> normalized = new HashMap<>();
+            normalized.put("rootCause", ai.getOrDefault("rootCause", ""));
+            normalized.put("fixSteps", ai.getOrDefault("fixSteps", ""));
+            normalized.put("whatNotToDo", ai.getOrDefault("whatNotToDo", ""));
+
+            return normalized;
 
         } catch (Exception e) {
             return errorFallback(e);
         }
     }
 
-    // WHEN ERROR OCCURS IN AI , I HAVE KEPT A FALLBACK RESPONSE
-
     private Map<String, String> errorFallback(Exception e) {
         Map<String, String> error = new HashMap<>();
-        error.put("issue", "AI service error");
         error.put("rootCause", e.getMessage());
-        error.put("fixSteps", "Ensure Flask AI service is running and reachable");
-        error.put("whatToDo", "Do not expose raw stack traces to users");
+        error.put("fixSteps", "Ensure Flask AI service is running");
+        error.put("whatNotToDo", "Do not expose internal errors to users");
         return error;
     }
 }
