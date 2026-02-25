@@ -6,7 +6,7 @@ import com.ad.aidebugger.debug.service.DebugService;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "http://localhost:5173")
+//@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/api/debug")
 public class DebugController {
