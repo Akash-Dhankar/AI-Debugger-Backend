@@ -10,4 +10,3 @@ public class AidebuggerApplication {
 		SpringApplication.run(AidebuggerApplication.class, args);
 	}
 }
-

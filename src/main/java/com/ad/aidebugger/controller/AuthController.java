@@ -27,4 +27,9 @@ public class AuthController {
         String token = authService.login(request);
         return ResponseEntity.ok(token);
     }
+
+    @GetMapping("/test")
+    public ResponseEntity<String> test() {
+        return ResponseEntity.ok("AuthController is working!");
+    }
 }
